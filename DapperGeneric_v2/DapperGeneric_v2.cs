@@ -46,7 +46,7 @@ namespace DapperGeneric_v2
         public List<Car> GetAllCar()
         {
             var query = "SELECT * FROM cars";
-            return Query<Car>(query);
+            return QueryList<Car>(query);
         }
 
         public Car GetCarByID(int id)
