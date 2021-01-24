@@ -66,7 +66,25 @@ namespace DapperGeneric_v2
         {
             connStr = connectionString;
         }
-        public List<T> Query<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
+        
+        public IEnumerable<T> Query<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
+        {
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    return conn.Query<T>(query, parameters, commandType: comType);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Handle the exception
+                return new List<T>();
+            }
+        }
+        
+        public List<T> QueryList<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
         {
 
             try
