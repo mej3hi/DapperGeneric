@@ -48,7 +48,7 @@ namespace DapperGeneric
         public List<Car> GetAllCar()
         {
             var sql = "SELECT * FROM cars";
-            return Query<Car>(sql);
+            return QueryList<Car>(sql);
         }
 
         public Car GetCarByID(int id)
@@ -71,8 +71,23 @@ namespace DapperGeneric
             conn = new SqlConnection(connectionString);
             conn.Open();
         }
+        
+        public IEnumerable<T> Query<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
+        {
+            try
+            {
 
-        public List<T> Query<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
+                return conn.Query<T>(query, parameters, commandType: comType).ToList();
+
+            }
+            catch (Exception ex)
+            {
+                //Handle the exception
+                return default;
+            }
+        }
+
+        public List<T> QueryList<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
         {
             try
             {
