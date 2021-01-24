@@ -80,7 +80,7 @@ namespace DapperGeneric_v2
             catch (Exception ex)
             {
                 //Handle the exception
-                return new List<T>();
+                return default;
             }
         }
         
