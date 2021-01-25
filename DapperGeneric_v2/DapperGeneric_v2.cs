@@ -40,8 +40,6 @@ namespace DapperGeneric_v2
 
     public class CarManager : DapperBaseRepository
     {
-        private static string connStr = @"Server=localhost\SQLEXPRESS;Database=testdb;Trusted_Connection=True;";
-        public CarManager() : base(connStr) { }
 
         public List<Car> GetAllCar()
         {
@@ -61,12 +59,8 @@ namespace DapperGeneric_v2
 
     public class DapperBaseRepository
     {
-        private readonly string connStr = "";
-        public DapperBaseRepository(string connectionString)
-        {
-            connStr = connectionString;
-        }
-        
+        private readonly string connStr = @"Server=localhost\SQLEXPRESS;Database=testdb;Trusted_Connection=True;";
+
         public IEnumerable<T> Query<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
         {
 
@@ -83,7 +77,7 @@ namespace DapperGeneric_v2
                 return default;
             }
         }
-        
+
         public List<T> QueryList<T>(string query, DynamicParameters parameters = null, CommandType comType = CommandType.Text)
         {
 
