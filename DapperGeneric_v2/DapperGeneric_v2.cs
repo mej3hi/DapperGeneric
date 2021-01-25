@@ -14,7 +14,8 @@ namespace DapperGeneric_v2
             var c = new CarManager();
 
             Console.WriteLine("GetCarByID: 1");
-            var s = "Name:" + c.GetCarByID(1).Name.ToString() + " " + "Price:" + c.GetCarByID(1).Price.ToString();
+            var carid = c.GetCarByID(1);
+            var s = "Name:" + carid.Name.ToString() + " " + "Price:" + carid.Price.ToString();
             Console.WriteLine(s);
 
             Console.WriteLine("\n");
